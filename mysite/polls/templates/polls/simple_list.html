@@ -1,2 +1,22 @@
-{% load django_tables2 %}
-{% render_table table %}
+<table>
+<tr>
+    <th>address_id</th>
+    <th>contact_id</th>
+    <th>address_type</th>
+    <th>address</th>
+    <th>city</th>
+    <th>state</th>
+    <th>zip</th>
+
+</tr>
+{% for item in search_results %}
+    <tr>
+        <td>{{ item.address_id }}</td>
+        <td>{{ item.contact_id_id }}</td>
+        <td>{{ item.address_type }}</td>
+        <td>{{ item.city }}</td>
+        <td>{{ item.state }}</td>
+        <td>{{ item.zip }}</td>
+    </tr>
+    {% endfor %}
+    </table>

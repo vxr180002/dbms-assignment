@@ -1,21 +1,21 @@
 <head>
 <style>
-#customers {
+#contacts {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-#customers td, #customers th {
+#contacts td, #contacts th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#customers tr:nth-child(even){background-color: #f2f2f2;}
+#contacts tr:nth-child(even){background-color: #f2f2f2;}
 
-#customers tr:hover {background-color: #ddd;}
+#contacts tr:hover {background-color: #ddd;}
 
-#customers th {
+#contacts th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -30,25 +30,15 @@
     <li><a href="/polls">Home</a></li>
       </ul>
 </nav>
-<table id="customers">
+<table id="contacts" class="table">
     <tr>
         <th>Contact ID</th>
         <th>First Name</th>
         <th>Middle Name</th>
         <th>Last Name</th>
-        <th>Home Phone</th>
-        <th>Cell Phone</th>
-        <th>Home Address</th>
-        <th>Home City</th>
-        <th>Home State</th>
-        <th>Home Zip</th>
-        <th>Work Phone</th>
-        <th>Work Address</th>
-        <th>Work City</th>
-        <th>Work State</th>
-        <th>Work Zip</th>
-        <th>Birth Date</th>
-
+        <th>Address List</th>
+        <th>Phone Number List</th>
+        <th>Date List</th>
 
     </tr>
     {% for item in allContactObjects %}
@@ -57,18 +47,18 @@
         <td>{{ item.first_name }}</td>
         <td>{{ item.middle_name }}</td>
         <td>{{ item.last_name }}</td>
-        <td>{{ item.home_phone }}</td>
-        <td>{{ item.cell_phone }}</td>
-        <td>{{ item.home_address }}</td>
-        <td>{{ item.home_city }}</td>
-        <td>{{ item.home_state }}</td>
-        <td>{{ item.home_zip }}</td>
-        <td>{{ item.work_phone }}</td>
-        <td>{{ item.work_address }}</td>
-        <td>{{ item.work_city }}</td>
-        <td>{{ item.work_state }}</td>
-        <td>{{ item.work_zip }}</td>
-        <td>{{ item.birth_date }}</td>
+        <td><a href="/polls/address_list/{{item.contact_id}}">
+            <object type="text/html" data="http://127.0.0.1:8000/polls/address_list/{{item.contact_id}}" width="400px" height="200px" style="overflow:auto;border:5px ridge green">
+    </object> Go to Addresses
+        </a></td>
+        <td><a href="/polls/phone_list/{{item.contact_id}}">
+            <object type="text/html" data="http://127.0.0.1:8000/polls/phone_list/{{item.contact_id}}" width="400px" height="200px" style="overflow:auto;border:5px ridge green">
+    </object> Go to Phones
+        </a></td>
+        <td><a href="/polls/date_list/{{item.contact_id}}">
+            <object type="text/html" data="http://127.0.0.1:8000/polls/date_list/{{item.contact_id}}" width="400px" height="200px" style="overflow:auto;border:5px ridge green">
+    </object> Go to Dates
+        </a></td>
         <td><a href="/polls/delete_contact/{{item.contact_id}}" onclick="return confirm('Are you sure you want to delete contact {{item.contact_id}}?')">Delete</a>
 </td>
 

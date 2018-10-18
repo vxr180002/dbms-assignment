@@ -58,7 +58,7 @@ class address(models.Model):
 
 import django_tables2 as tables
 
-class SimpleTable(tables.Table):
+class SimpleAddressTable(tables.Table):
     class Meta:
         model = address
 
@@ -75,6 +75,10 @@ class phone(models.Model):
     area_code = models.CharField(max_length=200, null=True, blank=True)
     number = models.CharField(max_length=200, null=True, blank=True)
 
+class SimplePhoneTable(tables.Table):
+    class Meta:
+        model = phone
+
 class date(models.Model):
     def __str__(self):
         return self.date_id
@@ -86,3 +90,8 @@ class date(models.Model):
     )
     date_type = models.CharField(max_length=200, null=True, blank=True)
     date = models.CharField(max_length=200, null=True, blank=True)
+
+
+class SimpleDateTable(tables.Table):
+    class Meta:
+        model = date

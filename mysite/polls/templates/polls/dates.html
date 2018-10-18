@@ -1,0 +1,63 @@
+<nav>
+  <ul>
+    <li><a href="/polls">Home</a></li>
+    <li><a href="/polls/date_list/{{ contact_id }}">Date List</a></li>
+      </ul>
+</nav>
+
+<style>
+#dates {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#dates td, #dates th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#dates tr:nth-child(even){background-color: #f2f2f2;}
+
+#dates tr:hover {background-color: #ddd;}
+
+#dates th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<style>
+      .table a
+{
+    display:block;
+    text-decoration:none;
+}
+</style>
+
+<div>
+<p>Add a date to this contact
+<a href="/polls/manage_date/{{ contact_id }}/0"> click here</a>
+</p></div>
+
+<table id="dates" class="table">
+<tr>
+    <th>date_id</th>
+    <th>contact_id</th>
+    <th>date_type</th>
+    <th>date</th>
+
+</tr>
+{% for item in search_results %}
+    <tr>
+        <td><a href="/polls/manage_date/{{ contact_id }}/{{ item.date_id }}" onclick="return confirm('Do you want to edit Date {{ item.date_id }}?')">{{ item.date_id }}</a></td>
+        <td>{{ item.contact_id_id }}</td>
+        <td>{{ item.date_type }}</td>
+        <td>{{ item.date }}</td>
+        <td><a href="/polls/delete_date/{{ item.date_id }}" onclick="return confirm('Are you sure you want to delete Date {{ item.date_id }}?')">Delete</a>
+
+    </tr>
+    {% endfor %}
+    </table>

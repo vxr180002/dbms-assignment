@@ -1,0 +1,67 @@
+<nav>
+  <ul>
+    <li><a href="/polls">Home</a></li>
+    <li><a href="/polls/address_list/{{ contact_id }}">Address List</a></li>
+      </ul>
+</nav>
+
+<style>
+#addresses {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#addresses td, #addresses th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#addresses tr:nth-child(even){background-color: #f2f2f2;}
+
+#addresses tr:hover {background-color: #ddd;}
+
+#addresses th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<style>
+        .table a
+{
+    display:block;
+    text-decoration:none;
+}
+</style>
+<div>
+<p>Add an address to this contact
+<a href="/polls/manage_address/{{ contact_id }}/0"> click here</a>
+</p></div>
+<table id="addresses" class="table">
+<tr>
+    <th>address_id</th>
+    <th>contact_id</th>
+    <th>address_type</th>
+    <th>address</th>
+    <th>city</th>
+    <th>state</th>
+    <th>zip</th>
+
+</tr>
+{% for item in search_results %}
+    <tr>
+        <td><a href="/polls/manage_address/{{ contact_id }}/{{ item.address_id }}" onclick="return confirm('Do you want to edit Address {{ item.address_id }}?')">{{ item.address_id }}</a></td>
+        <td>{{ item.contact_id_id }}</td>
+        <td>{{ item.address_type }}</td>
+        <td>{{ item.address }}</td>
+        <td>{{ item.city }}</td>
+        <td>{{ item.state }}</td>
+        <td>{{ item.zip }}</td>
+        <td><a href="/polls/delete_address/{{ item.address_id }}" onclick="return confirm('Are you sure you want to delete Address {{ item.address_id }}?')">Delete</a>
+
+    </tr>
+    {% endfor %}
+    </table>

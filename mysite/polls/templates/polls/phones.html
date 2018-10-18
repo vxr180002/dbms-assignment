@@ -1,0 +1,66 @@
+<nav>
+  <ul>
+    <li><a href="/polls">Home</a></li>
+    <li><a href="/polls/phone_list/{{ contact_id }}">Phone List</a></li>
+      </ul>
+</nav>
+
+<style>
+#phones {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#phones td, #phones th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#phones tr:nth-child(even){background-color: #f2f2f2;}
+
+#phones tr:hover {background-color: #ddd;}
+
+#phones th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+
+<style>
+      .table a
+{
+    display:block;
+    text-decoration:none;
+}
+</style>
+
+<div>
+<p>Add a Phone to this contact
+<a href="/polls/manage_phone/{{ contact_id }}/0"> click here</a>
+</p>
+</div>
+
+<table id="phones" class="table">
+<tr>
+    <th>phone_id</th>
+    <th>contact_id</th>
+    <th>phone_type</th>
+    <th>Area_code</th>
+    <th>number</th>
+</tr>
+{% for item in search_results %}
+    <tr>
+        <td><a href="/polls/manage_phone/{{ contact_id }}/{{ item.phone_id }}" onclick="return confirm('Do you want to edit Phone {{ item.phone_id }}?')">{{ item.phone_id }}</a></td>
+        <td>{{ item.contact_id_id }}</td>
+        <td>{{ item.phone_type }}</td>
+        <td>{{ item.area_code }}</td>
+        <td>{{ item.number }}</td>
+        <td><a href="/polls/delete_phone/{{ item.phone_id }}" onclick="return confirm('Are you sure you want to delete Phone {{ item.phone_id }}?')">Delete</a>
+
+    </tr>
+    {% endfor %}
+    </table>
